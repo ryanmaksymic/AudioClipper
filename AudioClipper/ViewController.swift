@@ -52,9 +52,8 @@ class ViewController: UIViewController {
     }
     
     let audioSession = AVAudioSession.sharedInstance()
-    
     do {
-      try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+      try audioSession.setCategory(AVAudioSessionCategoryPlayback)  // AVAudioSessionCategoryRecord: audio not silenced by silent switch or screen locking, does interrupt other nonmixable app’s audio
     } catch {
       print(error.localizedDescription)
     }
