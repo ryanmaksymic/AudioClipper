@@ -9,17 +9,40 @@
 import UIKit
 
 class ViewController: UIViewController {
+  
+  // MARK: - Properties
 
+  @IBOutlet weak var artworkImageView: UIImageView!
+  @IBOutlet weak var fileNameLabel: UILabel!
+  @IBOutlet weak var currentTimeLabel: UILabel!
+  @IBOutlet weak var totalTimeLabel: UILabel!
+  @IBOutlet weak var timeProgressView: UIProgressView!
+  @IBOutlet weak var playPauseButton: UIButton!
+  
+  
+  // MARK: - Setup
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    fileNameLabel.text = "My Audio Track"
+    timeProgressView.progress = 0.0
+    currentTimeLabel.text = "00:00:00"
+    totalTimeLabel.text = "59:59:59"
   }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  
+  
+  // MARK: - Actions
+  
+  @IBAction func playPause(_ sender: UIButton) {
+    print("Play/Pause!")
   }
-
-
+  
+  @IBAction func backward(_ sender: UIButton) {
+    print("Backward!")
+  }
+  
+  @IBAction func forward(_ sender: UIButton) {
+    print("Forward!")
+  }
 }
-

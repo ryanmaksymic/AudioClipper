@@ -1,24 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AudioClipper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="eMW-bF-XC0" userLabel="Player Stack">
+                                <rect key="frame" x="16" y="28" width="343" height="529.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-hF-meX">
+                                        <rect key="frame" x="0.5" y="0.0" width="342" height="341.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="OKI-hF-meX" secondAttribute="height" multiplier="1:1" id="Zgh-aX-uzI"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wA-05-vfL">
+                                        <rect key="frame" x="0.0" y="377.5" width="343" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uZx-AZ-uri" userLabel="Progress Stack">
+                                        <rect key="frame" x="0.0" y="442.5" width="343" height="18"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq5-Jj-lJ4">
+                                                <rect key="frame" x="0.0" y="0.0" width="64" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="oRB-V7-HFZ">
+                                                <rect key="frame" x="72" y="8" width="199" height="2"/>
+                                            </progressView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsD-aQ-rHD">
+                                                <rect key="frame" x="279" y="0.0" width="64" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="K12-4O-m0I" userLabel="Controls Stack">
+                                        <rect key="frame" x="70" y="496.5" width="203" height="33"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrM-CO-pzK">
+                                                <rect key="frame" x="0.0" y="0.0" width="37" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="-30s">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="backward:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jur-uS-Nog"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFR-Ed-YWP" userLabel="PlayPause">
+                                                <rect key="frame" x="85" y="0.0" width="30" height="33"/>
+                                                <state key="normal" backgroundImage="play"/>
+                                                <connections>
+                                                    <action selector="playPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CXx-59-C1y"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0B-rh-wl8">
+                                                <rect key="frame" x="163" y="0.0" width="40" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="+30s">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="forward:" destination="BYZ-38-t0r" eventType="touchUpInside" id="be5-3B-MTp"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="OKI-hF-meX" firstAttribute="leading" secondItem="eMW-bF-XC0" secondAttribute="leading" id="RjR-F0-6jg"/>
+                                    <constraint firstItem="0wA-05-vfL" firstAttribute="leading" secondItem="eMW-bF-XC0" secondAttribute="leading" id="Rvv-Ty-pk1"/>
+                                    <constraint firstItem="OKI-hF-meX" firstAttribute="top" secondItem="eMW-bF-XC0" secondAttribute="top" id="S1p-XA-4mX"/>
+                                    <constraint firstItem="uZx-AZ-uri" firstAttribute="leading" secondItem="eMW-bF-XC0" secondAttribute="leading" id="eEN-lm-wlg"/>
+                                    <constraint firstAttribute="trailing" secondItem="OKI-hF-meX" secondAttribute="trailing" id="eVg-3K-QR9"/>
+                                    <constraint firstAttribute="trailing" secondItem="uZx-AZ-uri" secondAttribute="trailing" id="r7H-n4-8zq"/>
+                                    <constraint firstAttribute="trailing" secondItem="0wA-05-vfL" secondAttribute="trailing" id="u3O-Pl-OHs"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="eMW-bF-XC0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="Tvv-9t-Uew"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eMW-bF-XC0" secondAttribute="trailing" constant="16" id="oz4-iY-D38"/>
+                            <constraint firstItem="eMW-bF-XC0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="q08-5g-9Co"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="artworkImageView" destination="OKI-hF-meX" id="qjU-lD-Y1u"/>
+                        <outlet property="currentTimeLabel" destination="Vq5-Jj-lJ4" id="qpN-4U-HBf"/>
+                        <outlet property="fileNameLabel" destination="0wA-05-vfL" id="J6h-ci-JPw"/>
+                        <outlet property="playPauseButton" destination="BFR-Ed-YWP" id="SqM-IG-JYJ"/>
+                        <outlet property="timeProgressView" destination="oRB-V7-HFZ" id="chl-is-QoE"/>
+                        <outlet property="totalTimeLabel" destination="HsD-aQ-rHD" id="h1c-Oe-gQK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="artwork" width="402" height="402"/>
+        <image name="play" width="30" height="30"/>
+    </resources>
 </document>
