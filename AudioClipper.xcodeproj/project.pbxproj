@@ -13,6 +13,9 @@
 		FEC812DC205046FA00CCAFD1 /* AudioClipper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FEC812DA205046FA00CCAFD1 /* AudioClipper.xcdatamodeld */; };
 		FEC812DE205046FA00CCAFD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEC812DD205046FA00CCAFD1 /* Assets.xcassets */; };
 		FEC812E1205046FA00CCAFD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEC812DF205046FA00CCAFD1 /* LaunchScreen.storyboard */; };
+		FEC812EC20508D4D00CCAFD1 /* HH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC812E920508D4D00CCAFD1 /* HH.mp3 */; };
+		FEC812ED20508D4D00CCAFD1 /* UTU2TM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC812EA20508D4D00CCAFD1 /* UTU2TM.mp3 */; };
+		FEC812EE20508D4D00CCAFD1 /* CBB.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC812EB20508D4D00CCAFD1 /* CBB.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		FEC812DD205046FA00CCAFD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEC812E0205046FA00CCAFD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FEC812E2205046FA00CCAFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEC812E920508D4D00CCAFD1 /* HH.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HH.mp3; path = Assets/HH.mp3; sourceTree = SOURCE_ROOT; };
+		FEC812EA20508D4D00CCAFD1 /* UTU2TM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = UTU2TM.mp3; path = Assets/UTU2TM.mp3; sourceTree = SOURCE_ROOT; };
+		FEC812EB20508D4D00CCAFD1 /* CBB.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = CBB.mp3; path = Assets/CBB.mp3; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +65,23 @@
 				FEC812D3205046FA00CCAFD1 /* AppDelegate.swift */,
 				FEC812D5205046FA00CCAFD1 /* ViewController.swift */,
 				FEC812D7205046FA00CCAFD1 /* Main.storyboard */,
+				FEC812E820508D4000CCAFD1 /* Tracks */,
 				FEC812DD205046FA00CCAFD1 /* Assets.xcassets */,
 				FEC812DF205046FA00CCAFD1 /* LaunchScreen.storyboard */,
 				FEC812E2205046FA00CCAFD1 /* Info.plist */,
 				FEC812DA205046FA00CCAFD1 /* AudioClipper.xcdatamodeld */,
 			);
 			path = AudioClipper;
+			sourceTree = "<group>";
+		};
+		FEC812E820508D4000CCAFD1 /* Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				FEC812EB20508D4D00CCAFD1 /* CBB.mp3 */,
+				FEC812E920508D4D00CCAFD1 /* HH.mp3 */,
+				FEC812EA20508D4D00CCAFD1 /* UTU2TM.mp3 */,
+			);
+			path = Tracks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +143,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEC812EE20508D4D00CCAFD1 /* CBB.mp3 in Resources */,
+				FEC812EC20508D4D00CCAFD1 /* HH.mp3 in Resources */,
 				FEC812E1205046FA00CCAFD1 /* LaunchScreen.storyboard in Resources */,
+				FEC812ED20508D4D00CCAFD1 /* UTU2TM.mp3 in Resources */,
 				FEC812DE205046FA00CCAFD1 /* Assets.xcassets in Resources */,
 				FEC812D9205046FA00CCAFD1 /* Main.storyboard in Resources */,
 			);
