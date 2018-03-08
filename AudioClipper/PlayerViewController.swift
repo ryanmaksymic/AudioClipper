@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PlayerViewController.swift
 //  AudioClipper
 //
 //  Created by Ryan Maksymic on 2018-03-07.
@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class PlayerViewController: UIViewController {
 
   // MARK: - Properties
   
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
 
 // MARK: - AVAudioPlayerDelegate
 
-extension ViewController : AVAudioPlayerDelegate {
+extension PlayerViewController : AVAudioPlayerDelegate {
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
     updateTimeProgressTimer.invalidate()
   }

@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE9D74822051B8D5002C8C6A /* EpisodesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D74812051B8D5002C8C6A /* EpisodesTableViewController.swift */; };
 		FEC812D4205046FA00CCAFD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC812D3205046FA00CCAFD1 /* AppDelegate.swift */; };
-		FEC812D6205046FA00CCAFD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC812D5205046FA00CCAFD1 /* ViewController.swift */; };
+		FEC812D6205046FA00CCAFD1 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC812D5205046FA00CCAFD1 /* PlayerViewController.swift */; };
 		FEC812D9205046FA00CCAFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEC812D7205046FA00CCAFD1 /* Main.storyboard */; };
 		FEC812DC205046FA00CCAFD1 /* AudioClipper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FEC812DA205046FA00CCAFD1 /* AudioClipper.xcdatamodeld */; };
 		FEC812DE205046FA00CCAFD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEC812DD205046FA00CCAFD1 /* Assets.xcassets */; };
@@ -20,9 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE9D74812051B8D5002C8C6A /* EpisodesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesTableViewController.swift; sourceTree = "<group>"; };
 		FEC812D0205046FA00CCAFD1 /* AudioClipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioClipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEC812D3205046FA00CCAFD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FEC812D5205046FA00CCAFD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FEC812D5205046FA00CCAFD1 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		FEC812D8205046FA00CCAFD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FEC812DB205046FA00CCAFD1 /* AudioClipper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AudioClipper.xcdatamodel; sourceTree = "<group>"; };
 		FEC812DD205046FA00CCAFD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,7 +68,8 @@
 			children = (
 				FEC812EF2050AC6F00CCAFD1 /* Episode.swift */,
 				FEC812D3205046FA00CCAFD1 /* AppDelegate.swift */,
-				FEC812D5205046FA00CCAFD1 /* ViewController.swift */,
+				FEC812D5205046FA00CCAFD1 /* PlayerViewController.swift */,
+				FE9D74812051B8D5002C8C6A /* EpisodesTableViewController.swift */,
 				FEC812D7205046FA00CCAFD1 /* Main.storyboard */,
 				FEC812E820508D4000CCAFD1 /* Tracks */,
 				FEC812DD205046FA00CCAFD1 /* Assets.xcassets */,
@@ -162,8 +165,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEC812D6205046FA00CCAFD1 /* ViewController.swift in Sources */,
+				FEC812D6205046FA00CCAFD1 /* PlayerViewController.swift in Sources */,
 				FEC812F02050AC6F00CCAFD1 /* Episode.swift in Sources */,
+				FE9D74822051B8D5002C8C6A /* EpisodesTableViewController.swift in Sources */,
 				FEC812DC205046FA00CCAFD1 /* AudioClipper.xcdatamodeld in Sources */,
 				FEC812D4205046FA00CCAFD1 /* AppDelegate.swift in Sources */,
 			);
