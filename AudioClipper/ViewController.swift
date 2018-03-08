@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-  
+
   // MARK: - Properties
   
   @IBOutlet weak var artworkImageView: UIImageView!
@@ -21,7 +21,8 @@ class ViewController: UIViewController {
   @IBOutlet weak var playPauseButton: UIButton!
   
   var audioPlayer: AVAudioPlayer!
-  
+  var trackLength: TimeInterval!
+  var updateTimeProgressTimer: Timer!
   var playing = false
   
   
@@ -43,20 +44,43 @@ class ViewController: UIViewController {
   // MARK: - Private methods
   
   func prepareAudioPlayer() {
-    
+    let url = URL.init(fileURLWithPath: Bundle.main.path(forResource: "HH", ofType: "mp3")!)
     do {
-      audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "CBB", ofType: "mp3")!))
+      audioPlayer = try AVAudioPlayer(contentsOf: url)
       audioPlayer.prepareToPlay()
     } catch {
       print(error.localizedDescription)
     }
     
+    trackLength = audioPlayer.duration
+    totalTimeLabel.text = stringFromTimeInterval(interval: trackLength)
+    
     let audioSession = AVAudioSession.sharedInstance()
     do {
-      try audioSession.setCategory(AVAudioSessionCategoryPlayback)  // AVAudioSessionCategoryRecord: audio not silenced by silent switch or screen locking, does interrupt other nonmixable app’s audio
+      // AVAudioSessionCategoryPlayback: this app's audio is not silenced by silent switch or screen locking; this app's audio interrupts other nonmixable app’s audio
+      try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+      try audioSession.setActive(true)
     } catch {
       print(error.localizedDescription)
     }
+  }
+  
+  func updateTimeProgress() {
+    timeProgressView.progress = Float(audioPlayer.currentTime/trackLength)
+    
+    currentTimeLabel.text = stringFromTimeInterval(interval: audioPlayer.currentTime)
+  }
+  
+  func stringFromTimeInterval(interval: TimeInterval) -> String {
+    var result = ""
+    let ti = NSInteger(interval)
+    let hours = (ti / 3600)
+    let minutes = (ti / 60) % 60
+    let seconds = ti % 60
+    result.append(hours < 10 ? "0\(hours)" : "\(hours)")
+    result.append(minutes < 10 ? ":0\(minutes)" : ":\(minutes)")
+    result.append(seconds < 10 ? ":0\(seconds)" : ":\(seconds)")
+    return result
   }
   
   
@@ -65,20 +89,35 @@ class ViewController: UIViewController {
   @IBAction func playPause(_ sender: UIButton) {
     if playing {
       audioPlayer.pause()
+      updateTimeProgressTimer.invalidate()
       playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
     } else {
       audioPlayer.play()
+      updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.5,
+                                                         repeats: true,
+                                                         block: { (timer) in
+                                                          self.updateTimeProgress()})
       playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
     }
-    
     playing = !playing
   }
   
   @IBAction func backward(_ sender: UIButton) {
-    print("Backward!")
+    audioPlayer.currentTime = audioPlayer.currentTime - 30
+    updateTimeProgress()
   }
   
   @IBAction func forward(_ sender: UIButton) {
-    print("Forward!")
+    audioPlayer.currentTime = audioPlayer.currentTime + 30
+    updateTimeProgress()
+  }
+}
+
+
+// MARK: - AVAudioPlayerDelegate
+
+extension ViewController : AVAudioPlayerDelegate {
+  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    updateTimeProgressTimer.invalidate()
   }
 }
