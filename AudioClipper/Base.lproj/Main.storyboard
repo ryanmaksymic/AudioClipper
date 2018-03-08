@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Episodes Table View Controller-->
+        <!--My Episodes-->
         <scene sceneID="QkN-Kb-7rj">
             <objects>
                 <tableViewController id="awN-d7-Qa0" customClass="EpisodesTableViewController" customModule="AudioClipper" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                             <outlet property="delegate" destination="awN-d7-Qa0" id="RsZ-Gt-dG7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="sT8-Z9-FYi"/>
+                    <navigationItem key="navigationItem" title="My Episodes" id="sT8-Z9-FYi"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyS-1l-WlM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

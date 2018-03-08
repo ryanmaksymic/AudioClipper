@@ -6,17 +6,19 @@
 //  Copyright © 2018 Ryan Maksymic. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Episode {
   
-  var title: String
   var podcast: String
+  var artwork: UIImage
+  var title: String
   var url: URL
   
-  init(title: String, podcast: String, url: URL) {
-    self.title = title
+  init(podcast: String, artwork: UIImage, title: String, url: URL) {
     self.podcast = podcast
+    self.artwork = artwork
+    self.title = title
     self.url = url
   }
 }

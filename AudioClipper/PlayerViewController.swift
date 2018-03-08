@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class PlayerViewController: UIViewController {
-
+  
   // MARK: - Properties
   
   @IBOutlet weak var artworkImageView: UIImageView!
@@ -19,6 +19,8 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var totalTimeLabel: UILabel!
   @IBOutlet weak var timeProgressView: UIProgressView!
   @IBOutlet weak var playPauseButton: UIButton!
+  
+  var episode: Episode!
   
   var audioPlayer: AVAudioPlayer!
   var trackLength: TimeInterval!
@@ -30,39 +32,30 @@ class PlayerViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    fileNameLabel.text = "My Audio Track"
-    timeProgressView.progress = 0.0
-    currentTimeLabel.text = "00:00:00"
-    totalTimeLabel.text = "59:59:59"
-    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
-    
-    prepareAudioPlayer()
+    setupAudioPlayer()
+    updatePlayerInterface()
   }
   
   
   // MARK: - Private methods
   
-  func prepareAudioPlayer() {
-    let url = URL.init(fileURLWithPath: Bundle.main.path(forResource: "HH", ofType: "mp3")!)
+  func setupAudioPlayer() {
     do {
-      audioPlayer = try AVAudioPlayer(contentsOf: url)
-      audioPlayer.prepareToPlay()
+      audioPlayer = try AVAudioPlayer(contentsOf: episode.url)
     } catch {
       print(error.localizedDescription)
     }
+  }
+  
+  func updatePlayerInterface() {
+    fileNameLabel.text = episode.title
+    artworkImageView.image = episode.artwork
+    timeProgressView.progress = 0.0
+    currentTimeLabel.text = "00:00:00"
+    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
     
     trackLength = audioPlayer.duration
     totalTimeLabel.text = stringFromTimeInterval(interval: trackLength)
-    
-    let audioSession = AVAudioSession.sharedInstance()
-    do {
-      // AVAudioSessionCategoryPlayback: this app's audio is not silenced by silent switch or screen locking; this app's audio interrupts other nonmixable app’s audio
-      try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-      try audioSession.setActive(true)
-    } catch {
-      print(error.localizedDescription)
-    }
   }
   
   func updateTimeProgress() {
@@ -94,9 +87,9 @@ class PlayerViewController: UIViewController {
     } else {
       audioPlayer.play()
       updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.5,
-                                                         repeats: true,
-                                                         block: { (timer) in
-                                                          self.updateTimeProgress()})
+                                                     repeats: true,
+                                                     block: { (timer) in
+                                                      self.updateTimeProgress()})
       playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
     }
     playing = !playing
