@@ -60,7 +60,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="eMW-bF-XC0" userLabel="Player Stack">
-                                <rect key="frame" x="16" y="28" width="343" height="547.5"/>
+                                <rect key="frame" x="16" y="72" width="343" height="547.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-hF-meX">
                                         <rect key="frame" x="0.5" y="0.0" width="342" height="341.5"/>
@@ -166,7 +166,6 @@
                         <outlet property="playPauseButton" destination="BFR-Ed-YWP" id="SqM-IG-JYJ"/>
                         <outlet property="timeProgressView" destination="oRB-V7-HFZ" id="chl-is-QoE"/>
                         <outlet property="totalTimeLabel" destination="HsD-aQ-rHD" id="h1c-Oe-gQK"/>
-                        <segue destination="WNK-Vn-kRO" kind="show" identifier="ShowBookmarks" id="xnc-E0-dtM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -278,7 +277,6 @@
         <image name="play" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xnc-E0-dtM"/>
         <segue reference="cD0-sp-6Qg"/>
     </inferredMetricsTieBreakers>
 </document>

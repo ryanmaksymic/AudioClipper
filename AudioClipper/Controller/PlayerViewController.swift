@@ -111,16 +111,22 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func bookmark(_ sender: UIButton) {
-    if AudioManager.shared.isPlaying { pausePlayer() }
+    var wasPlaying = false
+    if AudioManager.shared.isPlaying {
+      pausePlayer()
+      wasPlaying = true
+    }
     let bookmarkAlert = UIAlertController(title: "New Bookmark", message: "\(episode.podcast)\n\(episode.title)\n\(AudioManager.shared.currentTimeString!)", preferredStyle: .alert)
     bookmarkAlert.addTextField { (textField) in
       textField.placeholder = "Add a comment if you like"
       textField.textAlignment = .center
     }
-    bookmarkAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    bookmarkAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+      if wasPlaying { self.resumePlayer() }
+    }))
     bookmarkAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
       self.saveBookmark(podcastName: self.episode.podcast, episodeName: self.episode.title, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: bookmarkAlert.textFields!.first!.text!)
-      self.performSegue(withIdentifier: "ShowBookmarks", sender: nil)
+      if wasPlaying { self.resumePlayer() }
     }))
     self.present(bookmarkAlert, animated: true, completion: nil)
   }
