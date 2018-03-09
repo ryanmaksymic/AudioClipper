@@ -58,7 +58,7 @@ class PlayerViewController: UIViewController {
   }
   
   private func startProgressTimer() {
-    updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.5,
+    updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 1.0,
                                                    repeats: true,
                                                    block: { (timer) in
                                                     self.updateTimeProgress()})
@@ -90,6 +90,31 @@ class PlayerViewController: UIViewController {
       try managedContext.save()
     } catch let error as NSError {
       print(error.localizedDescription)
+    }
+  }
+  // TODO: Make function return something to indicate successful save
+  
+  private func showSavedBookmarkAlert() {
+    
+    let popupFrame = CGRect(x: self.view.center.x - 100, y: self.view.center.y - 50, width: 200, height: 100)
+    let popup = UIView(frame: popupFrame)
+    popup.backgroundColor = UIColor.darkGray
+    popup.alpha = 0.98
+    
+    let popupLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+    popupLabel.center = CGPoint(x: 100, y: 50)
+    popupLabel.textColor = .white
+    popupLabel.textAlignment = .center
+    popupLabel.font = UIFont.boldSystemFont(ofSize: 17)
+    popupLabel.text = "Bookmarked saved!"
+    popup.addSubview(popupLabel)
+    
+    self.view.addSubview(popup)
+    
+    UIView.animate(withDuration: 0.5, delay: 2, options: [], animations: {
+      popup.alpha = 0
+    }) { (completed) in
+      popup.removeFromSuperview()
     }
   }
   
@@ -127,6 +152,7 @@ class PlayerViewController: UIViewController {
     bookmarkAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
       self.saveBookmark(podcastName: self.episode.podcast, episodeName: self.episode.title, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: bookmarkAlert.textFields!.first!.text!)
       if wasPlaying { self.resumePlayer() }
+      self.showSavedBookmarkAlert()
     }))
     self.present(bookmarkAlert, animated: true, completion: nil)
   }
