@@ -30,7 +30,7 @@ class BookmarksTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem
+    self.navigationItem.rightBarButtonItem = self.editButtonItem
     loadBookmarks()
   }
   
@@ -38,8 +38,7 @@ class BookmarksTableViewController: UITableViewController {
   // MARK: - Private methods
   
   private func loadBookmarks() {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-    let managedContext = appDelegate.persistentContainer.viewContext
+    guard let managedContext = viewContext() else { return }
     let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: R.bookmark)
     do {
       bookmarks = try managedContext.fetch(fetchRequest)
@@ -48,8 +47,15 @@ class BookmarksTableViewController: UITableViewController {
     }
   }
   
+  private func viewContext() -> NSManagedObjectContext? {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+    return appDelegate.persistentContainer.viewContext
+  }
   
-  // MARK: - UITableViewDataSource
+  // TODO: Create DataManager class to handle application-wide CRUD operations
+  
+  
+  // MARK: - UITableViewController
   
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -69,33 +75,25 @@ class BookmarksTableViewController: UITableViewController {
     return cell
   }
   
-  /*
-   // Override to support conditional editing of the table view.
-   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-   // Return false if you do not want the specified item to be editable.
-   return true
-   }
-   
-   // Override to support editing the table view.
-   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-   if editingStyle == .delete {
-   // Delete the row from the data source
-   tableView.deleteRows(at: [indexPath], with: .fade)
-   } else if editingStyle == .insert {
-   // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-   }
-   }
-   
-   // Override to support rearranging the table view.
-   override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-   }
-   
-   // Override to support conditional rearranging of the table view.
-   override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-   // Return false if you do not want the item to be re-orderable.
-   return true
-   }
-   */
+  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    return true
+  }
+  
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      let bookmark = bookmarks[indexPath.row]
+      guard let managedContext = viewContext() else { return }
+      managedContext.delete(bookmark)
+      do {
+        try managedContext.save()
+      } catch let error as NSError {
+        print(error.localizedDescription)
+      }
+      bookmarks.remove(at: indexPath.row)
+      tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+  }
+  
   
   /*
    // MARK: - Navigation
