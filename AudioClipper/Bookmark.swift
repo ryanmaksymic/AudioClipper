@@ -6,8 +6,17 @@
 //  Copyright © 2018 Ryan Maksymic. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Bookmark {
   
+  var episode: Episode
+  var timestamp: TimeInterval
+  var timestampString: String
+  
+  init(episode: Episode, timestamp: TimeInterval, timestampString: String) {
+    self.episode = episode
+    self.timestamp = timestamp
+    self.timestampString = timestampString
+  }
 }

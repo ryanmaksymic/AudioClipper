@@ -28,7 +28,7 @@ class PlayerViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    playEpisode()
+    startPlaying()
     updatePlayerInterface()
     startUpdateTimeProgressTimer()
   }
@@ -36,7 +36,7 @@ class PlayerViewController: UIViewController {
   
   // MARK: - Private methods
   
-  private func playEpisode() {
+  private func startPlaying() {
     // Start playing selected episode if it is not already playing:
     if AudioManager.shared.url != episode.url {
       AudioManager.shared.startPlaying(url: episode.url)
@@ -46,12 +46,12 @@ class PlayerViewController: UIViewController {
   private func updatePlayerInterface() {
     fileNameLabel.text = episode.title
     artworkImageView.image = episode.artwork
-    totalTimeLabel.text = AudioManager.shared.duration
+    totalTimeLabel.text = AudioManager.shared.durationString
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
   }
   
   private func updateTimeProgress() {
-    currentTimeLabel.text = AudioManager.shared.currentTime
+    currentTimeLabel.text = AudioManager.shared.currentTimeString
     timeProgressView.progress = AudioManager.shared.progress
   }
   
@@ -62,19 +62,23 @@ class PlayerViewController: UIViewController {
                                                     self.updateTimeProgress()})
   }
   
+  private func resumePlayer() {
+    AudioManager.shared.resume()
+    startUpdateTimeProgressTimer()
+    playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
+  }
+  
+  private func pausePlayer() {
+    AudioManager.shared.pause()
+    updateTimeProgressTimer.invalidate()
+    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
+  }
+  
   
   // MARK: - Actions
   
   @IBAction func playPause(_ sender: UIButton) {
-    if AudioManager.shared.isPlaying {
-      AudioManager.shared.pause()
-      updateTimeProgressTimer.invalidate()
-      playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
-    } else {
-      AudioManager.shared.resume()
-      startUpdateTimeProgressTimer()
-      playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
-    }
+    if AudioManager.shared.isPlaying { pausePlayer() } else { resumePlayer() }
   }
   
   @IBAction func backward(_ sender: UIButton) {
@@ -88,7 +92,13 @@ class PlayerViewController: UIViewController {
   }
   
   @IBAction func bookmark(_ sender: UIButton) {
-    print("Bookmark at \(AudioManager.shared.currentTime!)!")
+    if AudioManager.shared.isPlaying { pausePlayer() }
+    let bookmarkAlert = UIAlertController(title: "New Bookmark", message: "\(episode.podcast)\n\(episode.title)\n\(AudioManager.shared.currentTimeString!)", preferredStyle: .alert)
+    bookmarkAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
+      self.performSegue(withIdentifier: "ShowBookmarks", sender: nil)
+    }))
+    bookmarkAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    self.present(bookmarkAlert, animated: true, completion: nil)
   }
 }
 

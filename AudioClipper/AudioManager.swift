@@ -23,16 +23,23 @@ class AudioManager {
     return nil
   }
   
-  var duration: String? {
+  var durationString: String? {
     if let player = player {
       return stringFromTimeInterval(interval: player.duration)
     }
     return nil
   }
   
-  var currentTime: String? {
+  var currentTimeString: String? {
     if let player = player {
       return stringFromTimeInterval(interval: player.currentTime)
+    }
+    return nil
+  }
+  
+  var currentTime: TimeInterval? {
+    if let player = player {
+      return player.currentTime
     }
     return nil
   }
