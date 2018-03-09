@@ -86,6 +86,10 @@ class PlayerViewController: UIViewController {
     AudioManager.shared.forward()
     updateTimeProgress()
   }
+  
+  @IBAction func bookmark(_ sender: UIButton) {
+    print("Bookmark at \(AudioManager.shared.currentTime!)!")
+  }
 }
 
 
