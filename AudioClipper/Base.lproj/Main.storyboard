@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="-320.80000000000001" y="124.58770614692655"/>
         </scene>
-        <!--Player View Controller-->
+        <!--Now Playing-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PlayerViewController" customModule="AudioClipper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Now Playing" id="BYZ-38-t0r" customClass="PlayerViewController" customModule="AudioClipper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,22 +70,22 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uZx-AZ-uri" userLabel="Progress Stack">
                                         <rect key="frame" x="0.0" y="442.5" width="343" height="18"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq5-Jj-lJ4">
-                                                <rect key="frame" x="0.0" y="0.0" width="64" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq5-Jj-lJ4">
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="18"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="64" id="v8o-nE-sp8"/>
+                                                    <constraint firstAttribute="width" constant="70" id="v8o-nE-sp8"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="oRB-V7-HFZ">
-                                                <rect key="frame" x="72" y="8" width="199" height="2"/>
+                                                <rect key="frame" x="78" y="8" width="187" height="2"/>
                                             </progressView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsD-aQ-rHD">
-                                                <rect key="frame" x="279" y="0.0" width="64" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsD-aQ-rHD">
+                                                <rect key="frame" x="273" y="0.0" width="70" height="18"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="64" id="OYp-Zs-PP5"/>
+                                                    <constraint firstAttribute="width" constant="70" id="OYp-Zs-PP5"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

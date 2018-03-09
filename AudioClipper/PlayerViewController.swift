@@ -21,87 +21,69 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var playPauseButton: UIButton!
   
   var episode: Episode!
-  
-  var audioPlayer: AVAudioPlayer!
-  var trackLength: TimeInterval!
   var updateTimeProgressTimer: Timer!
-  var playing = false
   
   
   // MARK: - Setup
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupAudioPlayer()
+    playEpisode()
     updatePlayerInterface()
+    startUpdateTimeProgressTimer()
   }
   
   
   // MARK: - Private methods
   
-  func setupAudioPlayer() {
-    do {
-      audioPlayer = try AVAudioPlayer(contentsOf: episode.url)
-    } catch {
-      print(error.localizedDescription)
+  private func playEpisode() {
+    // Start playing selected episode if it is not already playing:
+    if AudioManager.shared.url != episode.url {
+      AudioManager.shared.startPlaying(url: episode.url)
     }
   }
   
-  func updatePlayerInterface() {
+  private func updatePlayerInterface() {
     fileNameLabel.text = episode.title
     artworkImageView.image = episode.artwork
-    timeProgressView.progress = 0.0
-    currentTimeLabel.text = "00:00:00"
-    playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
-    
-    trackLength = audioPlayer.duration
-    totalTimeLabel.text = stringFromTimeInterval(interval: trackLength)
+    totalTimeLabel.text = AudioManager.shared.duration
+    playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
   }
   
-  func updateTimeProgress() {
-    timeProgressView.progress = Float(audioPlayer.currentTime/trackLength)
-    
-    currentTimeLabel.text = stringFromTimeInterval(interval: audioPlayer.currentTime)
+  private func updateTimeProgress() {
+    currentTimeLabel.text = AudioManager.shared.currentTime
+    timeProgressView.progress = AudioManager.shared.progress
   }
   
-  func stringFromTimeInterval(interval: TimeInterval) -> String {
-    var result = ""
-    let ti = NSInteger(interval)
-    let hours = (ti / 3600)
-    let minutes = (ti / 60) % 60
-    let seconds = ti % 60
-    result.append(hours < 10 ? "0\(hours)" : "\(hours)")
-    result.append(minutes < 10 ? ":0\(minutes)" : ":\(minutes)")
-    result.append(seconds < 10 ? ":0\(seconds)" : ":\(seconds)")
-    return result
+  private func startUpdateTimeProgressTimer() {
+    updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.5,
+                                                   repeats: true,
+                                                   block: { (timer) in
+                                                    self.updateTimeProgress()})
   }
   
   
   // MARK: - Actions
   
   @IBAction func playPause(_ sender: UIButton) {
-    if playing {
-      audioPlayer.pause()
+    if AudioManager.shared.isPlaying {
+      AudioManager.shared.pause()
       updateTimeProgressTimer.invalidate()
       playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
     } else {
-      audioPlayer.play()
-      updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.5,
-                                                     repeats: true,
-                                                     block: { (timer) in
-                                                      self.updateTimeProgress()})
+      AudioManager.shared.resume()
+      startUpdateTimeProgressTimer()
       playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
     }
-    playing = !playing
   }
   
   @IBAction func backward(_ sender: UIButton) {
-    audioPlayer.currentTime = audioPlayer.currentTime - 30
+    AudioManager.shared.backward()
     updateTimeProgress()
   }
   
   @IBAction func forward(_ sender: UIButton) {
-    audioPlayer.currentTime = audioPlayer.currentTime + 30
+    AudioManager.shared.forward()
     updateTimeProgress()
   }
 }
