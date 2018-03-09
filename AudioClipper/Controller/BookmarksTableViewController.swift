@@ -19,6 +19,7 @@ class BookmarksTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.rowHeight = 100
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
   }
   
@@ -30,14 +31,16 @@ class BookmarksTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return bookmarks.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath)
-    
-    // Configure the cell...
-    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! BookmarksTableViewCell
+    let bookmark = bookmarks[indexPath.row]
+    cell.podcastLabel.text = bookmark.episode.podcast
+    cell.episodeTitleLabel.text = bookmark.episode.title
+    cell.timestampLabel.text = bookmark.timestampString
+    cell.commentLabel.text = "blah blah blah"
     return cell
   }
   

@@ -22,6 +22,7 @@ class PlayerViewController: UIViewController {
   
   var episode: Episode!
   var updateTimeProgressTimer: Timer!
+  var bookmark: Bookmark?
   
   
   // MARK: - Setup
@@ -94,11 +95,23 @@ class PlayerViewController: UIViewController {
   @IBAction func bookmark(_ sender: UIButton) {
     if AudioManager.shared.isPlaying { pausePlayer() }
     let bookmarkAlert = UIAlertController(title: "New Bookmark", message: "\(episode.podcast)\n\(episode.title)\n\(AudioManager.shared.currentTimeString!)", preferredStyle: .alert)
+    bookmarkAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     bookmarkAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
       self.performSegue(withIdentifier: "ShowBookmarks", sender: nil)
     }))
-    bookmarkAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     self.present(bookmarkAlert, animated: true, completion: nil)
+    bookmark = Bookmark(episode: episode, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!)
+  }
+  
+  
+  // MARK: - Navigation
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "ShowBookmarks" {
+      if let btvc = segue.destination as? BookmarksTableViewController {
+        btvc.bookmarks.append(bookmark!)
+      }
+    }
   }
 }
 

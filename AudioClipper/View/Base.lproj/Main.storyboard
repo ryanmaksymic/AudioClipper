@@ -59,7 +59,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="eMW-bF-XC0" userLabel="Player Stack">
-                                <rect key="frame" x="16" y="72" width="343" height="547.5"/>
+                                <rect key="frame" x="16" y="28" width="343" height="547.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-hF-meX">
                                         <rect key="frame" x="0.5" y="0.0" width="342" height="341.5"/>
@@ -106,8 +106,8 @@
                                             <action selector="bookmark:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n57-SW-Abt"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="K12-4O-m0I" userLabel="Controls Stack">
-                                        <rect key="frame" x="70" y="514.5" width="203" height="33"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="K12-4O-m0I" userLabel="Controls Stack">
+                                        <rect key="frame" x="69.5" y="514.5" width="204.5" height="33"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrM-CO-pzK">
                                                 <rect key="frame" x="0.0" y="0.0" width="37" height="33"/>
@@ -120,14 +120,14 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFR-Ed-YWP" userLabel="PlayPause">
-                                                <rect key="frame" x="85" y="0.0" width="30" height="33"/>
+                                                <rect key="frame" x="86.5" y="0.0" width="30" height="33"/>
                                                 <state key="normal" backgroundImage="play"/>
                                                 <connections>
                                                     <action selector="playPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CXx-59-C1y"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0B-rh-wl8">
-                                                <rect key="frame" x="163" y="0.0" width="40" height="33"/>
+                                                <rect key="frame" x="164.5" y="0.0" width="40" height="33"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="+30s">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -170,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="434" y="125"/>
+            <point key="canvasLocation" x="1214" y="125"/>
         </scene>
         <!--Bookmarks-->
         <scene sceneID="aKW-3u-xUb">
@@ -181,13 +181,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookmarkCell" id="zHi-p7-7rt">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookmarkCell" rowHeight="100" id="zHi-p7-7rt" customClass="BookmarksTableViewCell" customModule="AudioClipper" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zHi-p7-7rt" id="7CY-ez-UBA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Podcast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifa-Dz-MYK">
+                                            <rect key="frame" x="16" y="11" width="262" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkM-HB-bNN">
+                                            <rect key="frame" x="286" y="11" width="75" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdx-I1-i3O">
+                                            <rect key="frame" x="16" y="40" width="343" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User comment about this podcast clip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wd-Pt-d4o">
+                                            <rect key="frame" x="16" y="69" width="343" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="commentLabel" destination="4wd-Pt-d4o" id="dia-Si-7ph"/>
+                                    <outlet property="episodeTitleLabel" destination="Pdx-I1-i3O" id="m9g-zS-wEq"/>
+                                    <outlet property="podcastLabel" destination="ifa-Dz-MYK" id="rOd-5s-iuE"/>
+                                    <outlet property="timestampLabel" destination="rkM-HB-bNN" id="b48-zG-Zzm"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -195,10 +231,13 @@
                             <outlet property="delegate" destination="WNK-Vn-kRO" id="K5t-He-pwF"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowPlayer" id="cD0-sp-6Qg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZF-pu-twT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="433" y="895"/>
+            <point key="canvasLocation" x="432.80000000000001" y="894.60269865067471"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CSJ-W5-6Of">
@@ -226,5 +265,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xnc-E0-dtM"/>
+        <segue reference="cD0-sp-6Qg"/>
     </inferredMetricsTieBreakers>
 </document>
