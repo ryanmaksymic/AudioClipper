@@ -19,7 +19,7 @@ class BookmarksTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.rowHeight = 100
+    //tableView.rowHeight = 100
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
   }
   

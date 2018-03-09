@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -181,42 +182,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookmarkCell" rowHeight="100" id="zHi-p7-7rt" customClass="BookmarksTableViewCell" customModule="AudioClipper" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookmarkCell" rowHeight="98" id="zHi-p7-7rt" customClass="BookmarksTableViewCell" customModule="AudioClipper" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zHi-p7-7rt" id="7CY-ez-UBA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Podcast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifa-Dz-MYK">
-                                            <rect key="frame" x="16" y="11" width="263" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifa-Dz-MYK">
+                                            <rect key="frame" x="16" y="11" width="260" height="21"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkM-HB-bNN">
-                                            <rect key="frame" x="287" y="11" width="71.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkM-HB-bNN">
+                                            <rect key="frame" x="284" y="11" width="75" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="75" id="UVn-Qp-x26"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdx-I1-i3O">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdx-I1-i3O">
                                             <rect key="frame" x="16" y="40" width="343" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User comment about this podcast clip" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wd-Pt-d4o">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User comment about this podcast clip" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wd-Pt-d4o">
                                             <rect key="frame" x="16" y="69" width="343" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Pdx-I1-i3O" firstAttribute="top" secondItem="ifa-Dz-MYK" secondAttribute="bottom" constant="8" id="241-EN-wFk"/>
+                                        <constraint firstItem="4wd-Pt-d4o" firstAttribute="trailing" secondItem="7CY-ez-UBA" secondAttribute="trailingMargin" id="4cW-O0-Q5e"/>
+                                        <constraint firstItem="rkM-HB-bNN" firstAttribute="top" secondItem="7CY-ez-UBA" secondAttribute="topMargin" id="FFI-Mp-kzi"/>
+                                        <constraint firstItem="Pdx-I1-i3O" firstAttribute="leading" secondItem="7CY-ez-UBA" secondAttribute="leadingMargin" id="QSs-0A-4gF"/>
+                                        <constraint firstItem="ifa-Dz-MYK" firstAttribute="top" secondItem="7CY-ez-UBA" secondAttribute="topMargin" id="Rq7-Sh-8ID"/>
+                                        <constraint firstItem="rkM-HB-bNN" firstAttribute="leading" secondItem="ifa-Dz-MYK" secondAttribute="trailing" constant="8" id="SOf-ny-474"/>
+                                        <constraint firstItem="4wd-Pt-d4o" firstAttribute="leading" secondItem="7CY-ez-UBA" secondAttribute="leadingMargin" id="Vrx-w5-Tpm"/>
+                                        <constraint firstAttribute="bottom" secondItem="4wd-Pt-d4o" secondAttribute="bottom" constant="8" id="ftY-FT-wNe"/>
+                                        <constraint firstItem="ifa-Dz-MYK" firstAttribute="leading" secondItem="7CY-ez-UBA" secondAttribute="leadingMargin" id="iWg-fS-7Vo"/>
+                                        <constraint firstItem="Pdx-I1-i3O" firstAttribute="trailing" secondItem="7CY-ez-UBA" secondAttribute="trailingMargin" id="tZp-QH-aUZ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="rkM-HB-bNN" secondAttribute="trailing" id="u7Y-rk-kwj"/>
+                                        <constraint firstItem="4wd-Pt-d4o" firstAttribute="top" secondItem="Pdx-I1-i3O" secondAttribute="bottom" constant="8" id="xZx-j2-Et9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentLabel" destination="4wd-Pt-d4o" id="dia-Si-7ph"/>
