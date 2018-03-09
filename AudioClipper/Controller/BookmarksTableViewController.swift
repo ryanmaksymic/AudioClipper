@@ -40,7 +40,7 @@ class BookmarksTableViewController: UITableViewController {
     cell.podcastLabel.text = bookmark.episode.podcast
     cell.episodeTitleLabel.text = bookmark.episode.title
     cell.timestampLabel.text = bookmark.timestampString
-    cell.commentLabel.text = "blah blah blah"
+    cell.commentLabel.text = bookmark.comment!.trimmingCharacters(in: .whitespaces)
     return cell
   }
   

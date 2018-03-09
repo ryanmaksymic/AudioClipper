@@ -13,10 +13,12 @@ class Bookmark {
   var episode: Episode
   var timestamp: TimeInterval
   var timestampString: String
+  var comment: String?
   
-  init(episode: Episode, timestamp: TimeInterval, timestampString: String) {
+  init(episode: Episode, timestamp: TimeInterval, timestampString: String, comment: String? = nil) {
     self.episode = episode
     self.timestamp = timestamp
     self.timestampString = timestampString
+    self.comment = comment
   }
 }
