@@ -10,7 +10,6 @@
 		FE9D74822051B8D5002C8C6A /* EpisodesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D74812051B8D5002C8C6A /* EpisodesTableViewController.swift */; };
 		FE9D74842051EB95002C8C6A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D74832051EB95002C8C6A /* AudioManager.swift */; };
 		FE9D7486205210D6002C8C6A /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D7485205210D6002C8C6A /* BookmarksTableViewController.swift */; };
-		FE9D7488205210E4002C8C6A /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D7487205210E4002C8C6A /* Bookmark.swift */; };
 		FE9D748D20521B79002C8C6A /* BookmarksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D748C20521B79002C8C6A /* BookmarksTableViewCell.swift */; };
 		FEC812D4205046FA00CCAFD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC812D3205046FA00CCAFD1 /* AppDelegate.swift */; };
 		FEC812D6205046FA00CCAFD1 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC812D5205046FA00CCAFD1 /* PlayerViewController.swift */; };
@@ -28,7 +27,6 @@
 		FE9D74812051B8D5002C8C6A /* EpisodesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesTableViewController.swift; sourceTree = "<group>"; };
 		FE9D74832051EB95002C8C6A /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		FE9D7485205210D6002C8C6A /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
-		FE9D7487205210E4002C8C6A /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		FE9D748C20521B79002C8C6A /* BookmarksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewCell.swift; sourceTree = "<group>"; };
 		FEC812D0205046FA00CCAFD1 /* AudioClipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioClipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEC812D3205046FA00CCAFD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,9 +56,9 @@
 		FE9D748920521B41002C8C6A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FE9D7487205210E4002C8C6A /* Bookmark.swift */,
 				FEC812EF2050AC6F00CCAFD1 /* Episode.swift */,
 				FE9D74832051EB95002C8C6A /* AudioManager.swift */,
+				FEC812DA205046FA00CCAFD1 /* AudioClipper.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,7 +109,6 @@
 				FEC812DD205046FA00CCAFD1 /* Assets.xcassets */,
 				FEC812DF205046FA00CCAFD1 /* LaunchScreen.storyboard */,
 				FEC812E2205046FA00CCAFD1 /* Info.plist */,
-				FEC812DA205046FA00CCAFD1 /* AudioClipper.xcdatamodeld */,
 			);
 			path = AudioClipper;
 			sourceTree = "<group>";
@@ -209,7 +206,6 @@
 				FEC812DC205046FA00CCAFD1 /* AudioClipper.xcdatamodeld in Sources */,
 				FE9D7486205210D6002C8C6A /* BookmarksTableViewController.swift in Sources */,
 				FEC812D4205046FA00CCAFD1 /* AppDelegate.swift in Sources */,
-				FE9D7488205210E4002C8C6A /* Bookmark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

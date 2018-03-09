@@ -75,6 +75,8 @@ class AudioManager {
     player!.play()
   }
   
+  // TODO: Refactor PlayerViewController, move isPlaying check into pause() and resume() (?)
+  
   func pause() {
     if let player = player {
       player.pause()

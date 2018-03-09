@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class PlayerViewController: UIViewController {
   
@@ -22,23 +23,23 @@ class PlayerViewController: UIViewController {
   
   var episode: Episode!
   var updateTimeProgressTimer: Timer!
-  var bookmark: Bookmark?
+  var bookmark: NSManagedObject?
   
   
   // MARK: - Setup
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    startPlaying()
+    startPlayingEpisode()
     updatePlayerInterface()
-    startUpdateTimeProgressTimer()
+    startProgressTimer()
   }
   
   
   // MARK: - Private methods
   
-  private func startPlaying() {
-    // Start playing selected episode if it is not already playing:
+  private func startPlayingEpisode() {
+    // Start playing selected episode only if it is not already playing:
     if AudioManager.shared.url != episode.url {
       AudioManager.shared.startPlaying(url: episode.url)
     }
@@ -56,7 +57,7 @@ class PlayerViewController: UIViewController {
     timeProgressView.progress = AudioManager.shared.progress
   }
   
-  private func startUpdateTimeProgressTimer() {
+  private func startProgressTimer() {
     updateTimeProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.5,
                                                    repeats: true,
                                                    block: { (timer) in
@@ -65,7 +66,7 @@ class PlayerViewController: UIViewController {
   
   private func resumePlayer() {
     AudioManager.shared.resume()
-    startUpdateTimeProgressTimer()
+    startProgressTimer()
     playPauseButton.setBackgroundImage(UIImage(named: "pause"), for: .normal)
   }
   
@@ -73,6 +74,23 @@ class PlayerViewController: UIViewController {
     AudioManager.shared.pause()
     updateTimeProgressTimer.invalidate()
     playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
+  }
+  
+  private func saveBookmark(podcastName: String, episodeName: String, timestamp: TimeInterval, timestampString: String, comment: String) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(forEntityName: R.bookmark, in: managedContext)!
+    let bookmark = NSManagedObject(entity: entity, insertInto: managedContext)
+    bookmark.setValue(podcastName, forKeyPath: R.podcastName)
+    bookmark.setValue(episodeName, forKeyPath: R.episodeName)
+    bookmark.setValue(timestamp, forKeyPath: R.timestamp)
+    bookmark.setValue(timestampString, forKeyPath: R.timestampString)
+    bookmark.setValue(comment, forKeyPath: R.comment)
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print(error.localizedDescription)
+    }
   }
   
   
@@ -101,24 +119,10 @@ class PlayerViewController: UIViewController {
     }
     bookmarkAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     bookmarkAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
-      self.bookmark = Bookmark(episode: self.episode, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: bookmarkAlert.textFields?.first?.text)
+      self.saveBookmark(podcastName: self.episode.podcast, episodeName: self.episode.title, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: bookmarkAlert.textFields!.first!.text!)
       self.performSegue(withIdentifier: "ShowBookmarks", sender: nil)
-      
-      // TODO: Save new Bookmark object to CoreData; maybe don't segue?
-      
     }))
     self.present(bookmarkAlert, animated: true, completion: nil)
-  }
-  
-  
-  // MARK: - Navigation
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ShowBookmarks" {
-      if let btvc = segue.destination as? BookmarksTableViewController {
-        btvc.bookmarks.append(bookmark!)
-      }
-    }
   }
 }
 

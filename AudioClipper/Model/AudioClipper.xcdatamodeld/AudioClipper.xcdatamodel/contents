@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Bookmark" representedClassName="Bookmark" syncable="YES" codeGenerationType="class">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="episodeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="podcastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timestampString" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Bookmark" positionX="-54" positionY="-9" width="128" height="118"/>
+    </elements>
+</model>
