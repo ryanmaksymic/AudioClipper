@@ -75,6 +75,16 @@ class AudioManager {
     player!.play()
   }
   
+  func startPlaying(url: URL, atTime time: TimeInterval) {
+    do {
+      player = try AVAudioPlayer(contentsOf: url)
+    } catch {
+      print(error)
+      return
+    }
+    player!.play(atTime: time)
+  }
+  
   // TODO: Refactor PlayerViewController, move isPlaying check into pause() and resume() (?)
   
   func pause() {

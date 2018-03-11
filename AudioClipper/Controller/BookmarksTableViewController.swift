@@ -75,6 +75,10 @@ class BookmarksTableViewController: UITableViewController {
     return cell
   }
   
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //performSegue(withIdentifier: "ShowPlayer", sender: nil)
+  }
+  
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
@@ -95,13 +99,13 @@ class BookmarksTableViewController: UITableViewController {
   }
   
   
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
+  // MARK: - Navigation
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //if segue.identifier == "ShowPlayer", let pvc = segue.destination as? PlayerViewController {
+    //let bookmark = bookmarks[tableView.indexPathForSelectedRow!.row]
+    //pvc.episode = bookmark.episode
+    // TODO: Make Episode entity in Core Data so that this works
+    //}
+  }
 }

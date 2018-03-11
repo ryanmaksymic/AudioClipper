@@ -42,6 +42,8 @@ class PlayerViewController: UIViewController {
     // Start playing selected episode only if it is not already playing:
     if AudioManager.shared.url != episode.url {
       AudioManager.shared.startPlaying(url: episode.url)
+      //if AudioManager.shared.url != episode.url || episode.progress > 0 {
+      //AudioManager.shared.startPlaying(url: episode.url, atTime: episode.progress)
     }
   }
   
