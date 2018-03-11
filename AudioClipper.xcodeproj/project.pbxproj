@@ -11,6 +11,7 @@
 		FE9D74842051EB95002C8C6A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D74832051EB95002C8C6A /* AudioManager.swift */; };
 		FE9D7486205210D6002C8C6A /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D7485205210D6002C8C6A /* BookmarksTableViewController.swift */; };
 		FE9D748D20521B79002C8C6A /* BookmarksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D748C20521B79002C8C6A /* BookmarksTableViewCell.swift */; };
+		FEC2E0402055AF7C00BD096C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2E03F2055AF7C00BD096C /* DataManager.swift */; };
 		FEC812D4205046FA00CCAFD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC812D3205046FA00CCAFD1 /* AppDelegate.swift */; };
 		FEC812D6205046FA00CCAFD1 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC812D5205046FA00CCAFD1 /* PlayerViewController.swift */; };
 		FEC812D9205046FA00CCAFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEC812D7205046FA00CCAFD1 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		FE9D74832051EB95002C8C6A /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		FE9D7485205210D6002C8C6A /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
 		FE9D748C20521B79002C8C6A /* BookmarksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewCell.swift; sourceTree = "<group>"; };
+		FEC2E03F2055AF7C00BD096C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FEC812D0205046FA00CCAFD1 /* AudioClipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioClipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEC812D3205046FA00CCAFD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEC812D5205046FA00CCAFD1 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				FEC812EF2050AC6F00CCAFD1 /* Episode.swift */,
 				FE9D74832051EB95002C8C6A /* AudioManager.swift */,
+				FEC2E03F2055AF7C00BD096C /* DataManager.swift */,
 				FEC812DA205046FA00CCAFD1 /* AudioClipper.xcdatamodeld */,
 			);
 			path = Model;
@@ -205,6 +208,7 @@
 				FE9D74822051B8D5002C8C6A /* EpisodesTableViewController.swift in Sources */,
 				FEC812DC205046FA00CCAFD1 /* AudioClipper.xcdatamodeld in Sources */,
 				FE9D7486205210D6002C8C6A /* BookmarksTableViewController.swift in Sources */,
+				FEC2E0402055AF7C00BD096C /* DataManager.swift in Sources */,
 				FEC812D4205046FA00CCAFD1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

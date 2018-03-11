@@ -58,7 +58,7 @@ class AudioManager {
     return false
   }
   
-  var playerInitialized: Bool {
+  var playerInitialized: Bool {  // TODO: Check if this needs to exist
     return player != nil
   }
   
@@ -84,8 +84,6 @@ class AudioManager {
     }
     player!.play(atTime: time)
   }
-  
-  // TODO: Refactor PlayerViewController, move isPlaying check into pause() and resume() (?)
   
   func pause() {
     if let player = player {

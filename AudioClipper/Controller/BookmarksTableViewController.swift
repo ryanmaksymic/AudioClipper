@@ -9,16 +9,6 @@
 import UIKit
 import CoreData
 
-// Bookmark entity keys:
-enum R {
-  static let bookmark = "Bookmark"
-  static let comment = "comment"
-  static let episodeName = "episodeName"
-  static let podcastName = "podcastName"
-  static let timestamp = "timestamp"
-  static let timestampString = "timestampString"
-}
-
 class BookmarksTableViewController: UITableViewController {
   
   // MARK: - Properties
@@ -31,28 +21,8 @@ class BookmarksTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.rightBarButtonItem = self.editButtonItem
-    loadBookmarks()
+    bookmarks = DataManager.load(entities: R.bookmark) ?? []
   }
-  
-  
-  // MARK: - Private methods
-  
-  private func loadBookmarks() {
-    guard let managedContext = viewContext() else { return }
-    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: R.bookmark)
-    do {
-      bookmarks = try managedContext.fetch(fetchRequest)
-    } catch let error as NSError {
-      print(error.localizedDescription)
-    }
-  }
-  
-  private func viewContext() -> NSManagedObjectContext? {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
-    return appDelegate.persistentContainer.viewContext
-  }
-  
-  // TODO: Create DataManager class to handle application-wide CRUD operations
   
   
   // MARK: - UITableViewController
@@ -86,12 +56,9 @@ class BookmarksTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       let bookmark = bookmarks[indexPath.row]
-      guard let managedContext = viewContext() else { return }
-      managedContext.delete(bookmark)
-      do {
-        try managedContext.save()
-      } catch let error as NSError {
-        print(error.localizedDescription)
+      guard DataManager.delete(object: bookmark) else {
+        print("Error deleting bookmark")
+        return
       }
       bookmarks.remove(at: indexPath.row)
       tableView.deleteRows(at: [indexPath], with: .automatic)
