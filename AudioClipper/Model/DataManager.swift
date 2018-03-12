@@ -16,6 +16,7 @@ enum R {
   static let comment = "comment"
   static let timestamp = "timestamp"
   static let timestampString = "timestampString"
+  static let episode = "episode"
   
   // Episodes:
   static let Episode = "Episode"

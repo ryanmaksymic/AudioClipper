@@ -65,24 +65,15 @@ class AudioManager {
   
   // MARK: - Public methods
   
-  func startPlaying(url: URL) {
+  func startPlaying(url: URL, atTime time: Double) {
     do {
       player = try AVAudioPlayer(contentsOf: url)
     } catch {
       print(error)
       return
     }
+    player?.currentTime = time
     player!.play()
-  }
-  
-  func startPlaying(url: URL, atTime time: TimeInterval) {
-    do {
-      player = try AVAudioPlayer(contentsOf: url)
-    } catch {
-      print(error)
-      return
-    }
-    player!.play(atTime: time)
   }
   
   func pause() {

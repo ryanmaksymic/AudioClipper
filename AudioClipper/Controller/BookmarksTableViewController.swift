@@ -13,7 +13,6 @@ class BookmarksTableViewController: UITableViewController {
   
   // MARK: - Properties
   
-  //var bookmarks = [NSManagedObject]()
   var bookmarks = [Bookmark]()
   
   
@@ -39,15 +38,15 @@ class BookmarksTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! BookmarksTableViewCell
     let bookmark = bookmarks[indexPath.row]
-    cell.podcastLabel.text = bookmark.podcastName
-    cell.episodeTitleLabel.text = bookmark.episodeName
+    cell.podcastLabel.text = bookmark.episode?.podcastName
+    cell.episodeTitleLabel.text = bookmark.episode?.episodeName
     cell.timestampLabel.text = bookmark.timestampString
     cell.commentLabel.text = bookmark.comment
     return cell
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //performSegue(withIdentifier: "ShowPlayer", sender: nil)
+    performSegue(withIdentifier: "ShowPlayer", sender: nil)
   }
   
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -70,10 +69,10 @@ class BookmarksTableViewController: UITableViewController {
   // MARK: - Navigation
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //if segue.identifier == "ShowPlayer", let pvc = segue.destination as? PlayerViewController {
-    //let bookmark = bookmarks[tableView.indexPathForSelectedRow!.row]
-    //pvc.episode = bookmark.episode
-    // TODO: Make Episode entity in Core Data so that this works
-    //}
+    if segue.identifier == "ShowPlayer", let pvc = segue.destination as? PlayerViewController {
+      let bookmark = bookmarks[tableView.indexPathForSelectedRow!.row]
+      bookmark.episode?.progress = bookmark.timestamp
+      pvc.episode = bookmark.episode
+    }
   }
 }

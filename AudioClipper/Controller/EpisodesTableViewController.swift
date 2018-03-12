@@ -14,7 +14,6 @@ class EpisodesTableViewController: UITableViewController {
   
   // MARK: - Properties
   
-  //var episodes = [NSManagedObject]()
   var episodes = [Episode]()
   
   
@@ -85,7 +84,6 @@ class EpisodesTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath)
     let episode = episodes[indexPath.row]
-    //cell.textLabel!.text = episode.value(forKey: R.podcastName) as? String
     cell.textLabel!.text = episode.podcastName
     return cell
   }
@@ -114,5 +112,6 @@ class EpisodesTableViewController: UITableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let pvc = segue.destination as? PlayerViewController else { return }
     pvc.episode = episodes[tableView.indexPathForSelectedRow!.row]
+    pvc.episode.progress = 0
   }
 }

@@ -41,14 +41,15 @@ class PlayerViewController: UIViewController {
   
   private func startPlayingEpisode() {
     episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: episode.fileName, ofType: "mp3")!)
-    AudioManager.shared.startPlaying(url: episodeURL!)
+    AudioManager.shared.startPlaying(url: episodeURL!, atTime: episode.progress)
     // TODO: Don't play episode if it is already playing
-    // TODO: Start playing episode at timestamp if linked from Bookmark
+    // TODO: Keep episode.progress updated to resume playing an episode where you left off
   }
   
   private func updatePlayerInterface() {
-    fileNameLabel.text = episode.episodeName
     artworkImageView.image = UIImage(data: episode.artwork!)
+    fileNameLabel.text = episode.episodeName
+    updateTimeProgress()
     totalTimeLabel.text = AudioManager.shared.durationString
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
   }
@@ -77,8 +78,8 @@ class PlayerViewController: UIViewController {
     playPauseButton.setBackgroundImage(UIImage(named: "play"), for: .normal)
   }
   
-  private func saveBookmark(podcastName: String, episodeName: String, timestamp: TimeInterval, timestampString: String, comment: String) -> Bool {
-    let data: [String:Any] = [R.podcastName:podcastName, R.episodeName:episodeName, R.timestamp:timestamp, R.timestampString:timestampString, R.comment:comment]
+  private func saveBookmark(episode: Episode, timestamp: TimeInterval, timestampString: String, comment: String) -> Bool {
+    let data: [String:Any] = [R.episode:episode, R.timestamp:timestamp, R.timestampString:timestampString, R.comment:comment]
     guard DataManager.create(entity: R.Bookmark, withData: data) else {
       print("Error saving bookmark")
       return false
@@ -142,7 +143,8 @@ class PlayerViewController: UIViewController {
       if wasPlaying { self.resumePlayer() }
     }))
     bookmarkAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
-      if self.saveBookmark(podcastName: self.episode.podcastName!, episodeName: self.episode.episodeName!, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: bookmarkAlert.textFields!.first!.text!) {
+      if self.saveBookmark(episode: self.episode, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: bookmarkAlert.textFields!.first!.text!) {
+        print("currentTime = \(AudioManager.shared.currentTime!)")
         self.showSavedBookmarkAlert()
       }
       if wasPlaying { self.resumePlayer() }
@@ -156,6 +158,7 @@ class PlayerViewController: UIViewController {
 
 extension PlayerViewController : AVAudioPlayerDelegate {
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    episode.progress = 0
     updateTimeProgressTimer.invalidate()
   }
 }
