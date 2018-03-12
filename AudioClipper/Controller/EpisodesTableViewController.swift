@@ -8,11 +8,13 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class EpisodesTableViewController: UITableViewController {
   
   // MARK: - Properties
-
+  
+  //var episodes = [NSManagedObject]()
   var episodes = [Episode]()
   
   
@@ -20,15 +22,15 @@ class EpisodesTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    loadTestData()
-    
     setupAudioSession()
-    
+    loadEpisodes()
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
   }
   
-  func setupAudioSession() {
+  
+  // MARK: - Private methods
+  
+  private func setupAudioSession() {
     let audioSession = AVAudioSession.sharedInstance()
     do {
       // AVAudioSessionCategoryPlayback: this app's audio is not silenced by silent switch or screen locking; this app's audio interrupts other nonmixable app’s audio
@@ -39,14 +41,38 @@ class EpisodesTableViewController: UITableViewController {
     }
   }
   
+  private func loadEpisodes() {
+    guard let eps = DataManager.load(entities: R.Episode) as? [Episode], eps != [] else {
+      print("No episodes found. Creating dummy data.")
+      generateDummyData()
+      loadEpisodes()
+      return
+    }
+    episodes = eps
+  }
   
-  // MARK: - Private methods
-  
-  func loadTestData() {
-    let episode1 = Episode(podcast: "Comedy Bang! Bang!", artwork: UIImage(named: "cbb_art")!, title: "Episode #123", url: URL.init(fileURLWithPath: Bundle.main.path(forResource: "CBB", ofType: "mp3")!))
-    let episode2 = Episode(podcast: "Hollywood Handbook", artwork: UIImage(named: "hh_art")!, title: "Episode #456", url: URL.init(fileURLWithPath: Bundle.main.path(forResource: "HH", ofType: "mp3")!))
-    let episode3 = Episode(podcast: "U Talkin' U2 To Me?", artwork: UIImage(named: "utu2tm_art")!, title: "Episode #789", url: URL.init(fileURLWithPath: Bundle.main.path(forResource: "UTU2TM", ofType: "mp3")!))
-    episodes = [episode1, episode2, episode3]
+  private func generateDummyData() {
+    let episode1Data: [String:Any] = [
+      R.artwork:UIImageJPEGRepresentation(UIImage(named: "cbb_art")!, 1)!,
+      R.episodeName:"Episode #123",
+      R.podcastName:"Comedy Bang! Bang!",
+      R.progress:0,
+      R.fileName: "CBB"]
+    _ = DataManager.create(entity: R.Episode, withData: episode1Data)
+    let episode2Data: [String:Any] = [
+      R.artwork:UIImageJPEGRepresentation(UIImage(named: "hh_art")!, 1)!,
+      R.episodeName:"Episode #456",
+      R.podcastName:"Hollywood Handbook",
+      R.progress:0,
+      R.fileName: "HH"]
+    _ = DataManager.create(entity: R.Episode, withData: episode2Data)
+    let episode3Data: [String:Any] = [
+      R.artwork:UIImageJPEGRepresentation(UIImage(named: "utu2tm_art")!, 1)!,
+      R.episodeName:"Episode #789",
+      R.podcastName:"U Talkin' U2 To Me?",
+      R.progress:0,
+      R.fileName:"UTU2TM"]
+    _ = DataManager.create(entity: R.Episode, withData: episode3Data)
   }
   
   
@@ -59,7 +85,8 @@ class EpisodesTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath)
     let episode = episodes[indexPath.row]
-    cell.textLabel!.text = episode.podcast
+    //cell.textLabel!.text = episode.value(forKey: R.podcastName) as? String
+    cell.textLabel!.text = episode.podcastName
     return cell
   }
   

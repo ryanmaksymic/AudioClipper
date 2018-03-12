@@ -21,7 +21,6 @@
 		FEC812EC20508D4D00CCAFD1 /* HH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC812E920508D4D00CCAFD1 /* HH.mp3 */; };
 		FEC812ED20508D4D00CCAFD1 /* UTU2TM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC812EA20508D4D00CCAFD1 /* UTU2TM.mp3 */; };
 		FEC812EE20508D4D00CCAFD1 /* CBB.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEC812EB20508D4D00CCAFD1 /* CBB.mp3 */; };
-		FEC812F02050AC6F00CCAFD1 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC812EF2050AC6F00CCAFD1 /* Episode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +40,6 @@
 		FEC812E920508D4D00CCAFD1 /* HH.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HH.mp3; path = Assets/HH.mp3; sourceTree = SOURCE_ROOT; };
 		FEC812EA20508D4D00CCAFD1 /* UTU2TM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = UTU2TM.mp3; path = Assets/UTU2TM.mp3; sourceTree = SOURCE_ROOT; };
 		FEC812EB20508D4D00CCAFD1 /* CBB.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = CBB.mp3; path = Assets/CBB.mp3; sourceTree = SOURCE_ROOT; };
-		FEC812EF2050AC6F00CCAFD1 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +56,6 @@
 		FE9D748920521B41002C8C6A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FEC812EF2050AC6F00CCAFD1 /* Episode.swift */,
 				FE9D74832051EB95002C8C6A /* AudioManager.swift */,
 				FEC2E03F2055AF7C00BD096C /* DataManager.swift */,
 				FEC812DA205046FA00CCAFD1 /* AudioClipper.xcdatamodeld */,
@@ -204,7 +201,6 @@
 				FE9D74842051EB95002C8C6A /* AudioManager.swift in Sources */,
 				FEC812D6205046FA00CCAFD1 /* PlayerViewController.swift in Sources */,
 				FE9D748D20521B79002C8C6A /* BookmarksTableViewCell.swift in Sources */,
-				FEC812F02050AC6F00CCAFD1 /* Episode.swift in Sources */,
 				FE9D74822051B8D5002C8C6A /* EpisodesTableViewController.swift in Sources */,
 				FEC812DC205046FA00CCAFD1 /* AudioClipper.xcdatamodeld in Sources */,
 				FE9D7486205210D6002C8C6A /* BookmarksTableViewController.swift in Sources */,

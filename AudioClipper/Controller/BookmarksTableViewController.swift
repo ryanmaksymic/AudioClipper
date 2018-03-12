@@ -13,7 +13,8 @@ class BookmarksTableViewController: UITableViewController {
   
   // MARK: - Properties
   
-  var bookmarks = [NSManagedObject]()
+  //var bookmarks = [NSManagedObject]()
+  var bookmarks = [Bookmark]()
   
   
   // MARK: - Setup
@@ -21,7 +22,7 @@ class BookmarksTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.rightBarButtonItem = self.editButtonItem
-    bookmarks = DataManager.load(entities: R.bookmark) ?? []
+    bookmarks = DataManager.load(entities: R.Bookmark) as! [Bookmark]
   }
   
   
@@ -38,10 +39,10 @@ class BookmarksTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkCell", for: indexPath) as! BookmarksTableViewCell
     let bookmark = bookmarks[indexPath.row]
-    cell.podcastLabel.text = bookmark.value(forKeyPath: R.podcastName) as? String
-    cell.episodeTitleLabel.text = bookmark.value(forKeyPath: R.episodeName) as? String
-    cell.timestampLabel.text = bookmark.value(forKeyPath: R.timestampString) as? String
-    cell.commentLabel.text = bookmark.value(forKeyPath: R.comment) as? String
+    cell.podcastLabel.text = bookmark.podcastName
+    cell.episodeTitleLabel.text = bookmark.episodeName
+    cell.timestampLabel.text = bookmark.timestampString
+    cell.commentLabel.text = bookmark.comment
     return cell
   }
   

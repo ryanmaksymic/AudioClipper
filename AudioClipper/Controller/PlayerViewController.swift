@@ -22,6 +22,7 @@ class PlayerViewController: UIViewController {
   @IBOutlet weak var playPauseButton: UIButton!
   
   var episode: Episode!
+  var episodeURL: URL?
   var updateTimeProgressTimer: Timer!
   var bookmark: NSManagedObject?
   
@@ -39,18 +40,15 @@ class PlayerViewController: UIViewController {
   // MARK: - Private methods
   
   private func startPlayingEpisode() {
-    // Start playing selected episode only if it is not already playing:
-    if AudioManager.shared.url != episode.url {
-      AudioManager.shared.startPlaying(url: episode.url)
-      //if AudioManager.shared.url != episode.url || episode.progress > 0 {
-      //AudioManager.shared.startPlaying(url: episode.url, atTime: episode.progress)
-      // TODO: Start playing episode at timestamp if provided
-    }
+    episodeURL = URL.init(fileURLWithPath: Bundle.main.path(forResource: episode.fileName, ofType: "mp3")!)
+    AudioManager.shared.startPlaying(url: episodeURL!)
+    // TODO: Don't play episode if it is already playing
+    // TODO: Start playing episode at timestamp if linked from Bookmark
   }
   
   private func updatePlayerInterface() {
-    fileNameLabel.text = episode.title
-    artworkImageView.image = episode.artwork
+    fileNameLabel.text = episode.episodeName
+    artworkImageView.image = UIImage(data: episode.artwork!)
     totalTimeLabel.text = AudioManager.shared.durationString
     playPauseButton.setBackgroundImage(UIImage(named: AudioManager.shared.isPlaying ? "pause" : "play"), for: .normal)
   }
@@ -81,7 +79,7 @@ class PlayerViewController: UIViewController {
   
   private func saveBookmark(podcastName: String, episodeName: String, timestamp: TimeInterval, timestampString: String, comment: String) -> Bool {
     let data: [String:Any] = [R.podcastName:podcastName, R.episodeName:episodeName, R.timestamp:timestamp, R.timestampString:timestampString, R.comment:comment]
-    guard DataManager.create(entity: R.bookmark, withData: data) else {
+    guard DataManager.create(entity: R.Bookmark, withData: data) else {
       print("Error saving bookmark")
       return false
     }
@@ -135,7 +133,7 @@ class PlayerViewController: UIViewController {
       pausePlayer()
       wasPlaying = true
     }
-    let bookmarkAlert = UIAlertController(title: "New Bookmark", message: "\(episode.podcast)\n\(episode.title)\n\(AudioManager.shared.currentTimeString!)", preferredStyle: .alert)
+    let bookmarkAlert = UIAlertController(title: "New Bookmark", message: "\(episode.podcastName!)\n\(episode.episodeName!)\n\(AudioManager.shared.currentTimeString!)", preferredStyle: .alert)
     bookmarkAlert.addTextField { (textField) in
       textField.placeholder = "Add a comment if you like"
       textField.textAlignment = .center
@@ -144,7 +142,7 @@ class PlayerViewController: UIViewController {
       if wasPlaying { self.resumePlayer() }
     }))
     bookmarkAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
-      if self.saveBookmark(podcastName: self.episode.podcast, episodeName: self.episode.title, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: bookmarkAlert.textFields!.first!.text!) {
+      if self.saveBookmark(podcastName: self.episode.podcastName!, episodeName: self.episode.episodeName!, timestamp: AudioManager.shared.currentTime!, timestampString: AudioManager.shared.currentTimeString!, comment: bookmarkAlert.textFields!.first!.text!) {
         self.showSavedBookmarkAlert()
       }
       if wasPlaying { self.resumePlayer() }

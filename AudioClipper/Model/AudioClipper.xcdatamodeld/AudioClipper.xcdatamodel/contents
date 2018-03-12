@@ -6,8 +6,19 @@
         <attribute name="podcastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timestampString" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="episode" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Episode" inverseName="bookmark" inverseEntity="Episode" syncable="YES"/>
+    </entity>
+    <entity name="Episode" representedClassName="Episode" syncable="YES" codeGenerationType="class">
+        <attribute name="artwork" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="episodeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="podcastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="progress" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <relationship name="bookmark" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bookmark" inverseName="episode" inverseEntity="Bookmark" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Bookmark" positionX="-54" positionY="-9" width="128" height="118"/>
+        <element name="Bookmark" positionX="-279" positionY="-171" width="128" height="133"/>
+        <element name="Episode" positionX="-54" positionY="27" width="128" height="148"/>
     </elements>
 </model>

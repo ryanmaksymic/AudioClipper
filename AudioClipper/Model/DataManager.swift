@@ -12,15 +12,18 @@ import CoreData
 // Data keys:
 enum R {
   // Bookmarks:
-  static let bookmark = "Bookmark"
+  static let Bookmark = "Bookmark"
   static let comment = "comment"
-  static let episodeName = "episodeName"
-  static let podcastName = "podcastName"
   static let timestamp = "timestamp"
   static let timestampString = "timestampString"
   
   // Episodes:
-  // TODO: This
+  static let Episode = "Episode"
+  static let artwork = "artwork"
+  static let episodeName = "episodeName"
+  static let fileName = "fileName"
+  static let podcastName = "podcastName"
+  static let progress = "progress"
 }
 
 class DataManager {
@@ -28,7 +31,6 @@ class DataManager {
   // MARK: - Class methods
   
   class func create(entity entityName: String, withData data: Dictionary<String, Any>) -> Bool {
-    
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
     let managedContext = appDelegate.persistentContainer.viewContext
     let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedContext)!
